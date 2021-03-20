@@ -10,17 +10,132 @@
     </style>
 </head>
 <body>
-    <div class="main"></div>
     <script>
-var tempC = parseInt(prompt('Введите градусы Цельсия'));
-tempC = (9 / 5) * tempC + 32;
-alert('Температура фарренгейт = ' + tempC );
-var name = prompt('Введите имя администратора');
-var admin = name;
-alert('Имя админа ' + admin);
-var quest = 1000 + "108";
-alert('Будет число = '+ quest +' . Так как 108 это строка, а строка с числом может склеится, а не сложиться')
-alert('async - это означает что скрипт абсолютно ни от чего не зависит,а defer запустит скрипт после загрузки страницы,но будет грузится в фоновом режиме')
-    </script>
+
+
+
+
+
+
+
+
+//1
+alert("var a = 1, b = 1, c, d; \n c = ++a; alert(c); // 0+2=2 т.к. a+1 происходит до присвоения к c          // 2\nd = b++; alert(d);     1 т.к. b+1 после присвоения      // 1\nc = (2+ ++a); alert(c);  2+3(т.к. a+1 произошло до присвоения)   // 5\n d = (2+ b++); alert(d);  2+2(т.к. b+1 произойдет после присвоения)    // 4 \n alert(a);       a=3             // 3\nalert(b);    b=3                // 3");
+//2
+alert("var a = 2;\nvar x = 1 + (a *= 2);\nX будет равен 5 т.к. x=1+(2*2)");
+//3
+alert("Объявить две целочисленные переменные a и b и задать им произвольные начальные значения. Затем написать скрипт, который работает по следующему принципу");
+var a = parseInt(prompt('Число 1'));
+var b = parseInt(prompt('Число 2'));
+if(a>=0 & b>=0 ){
+    alert('Результат = '+ (a-b))
+}
+if(a<=0 & b<=0 ){
+    alert('Результат = ' + (a*b))
+}
+if((a<=0 & b>=0) || (a>=0 & b<=0)){
+    alert('Результат = ' + (a+b))
+}
+
+//4
+alert('Присвоить переменной а значение в промежутке [0..15]. С помощью оператора switch организовать вывод чисел от a до 15.')
+var sw = parseInt(prompt('Введите число от 0 до 15'));
+alert('Внимание на консоль!');
+switch(sw){
+        case 1 :
+        console.log('1')
+        case 2 :
+        console.log('2')
+        case 3 :
+        console.log('3')
+        case 4 :
+        console.log('4')
+        case 5 :
+        console.log('5')
+        case 6 :
+        console.log('6')
+        case 7 :
+        console.log('7')
+        case 8 :
+        console.log('8')
+        case 9 :
+        console.log('9')
+        case 10 :
+        console.log('10')
+        case 11 :
+        console.log('11')
+        case 12 :
+        console.log('12')
+        case 13 :
+        console.log('13')
+        case 14 :
+        console.log('14')
+        case 15 :
+        console.log('15')
+    
+    }
+alert('При помощи рекурсии! Сделал защиту от невведенного числа.');
+alert('Внимание на консоль!')
+console.log('////////');
+function rec(w){
+    if(w>15 || isNaN(w)){
+        return;
+    }
+    
+    console.log(sw++);
+    rec(sw);
+}
+rec(sw);
+//5
+alert('Реализовать основные 4 арифметические операции в виде функций с двумя параметрами. Обязательно использовать оператор return.');
+alert('Напишите 2 числа, они пройдут по всем функциям');
+var c = parseInt(prompt('Число 1'));
+var v = parseInt(prompt('Число 2'));
+function sum(a,b){
+    return a+b;
+}
+function dif(a,b){
+    return a-b;
+}
+function multiply(a,b){
+    return a*b;
+}
+function divide(a,b){
+    return a/b;
+}
+alert('sum ='+sum(c,v)+' , dif = '+dif(c,v) +' , multiply = '+ multiply(c,v) + ' , divide = '+ divide(c,v))
+//6
+alert('Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation), где arg1, arg2 – значения аргументов, operation – строка с названием операции. В зависимости от переданного значения операции выполнить одну из арифметических операций (использовать функции из пункта 5) и вернуть полученное значение (использовать switch).')
+function mathOperation(a,b,op){
+switch(op){
+        case "+" :
+        return sum(a,b);
+        case "-" :
+        return dif(a,b);
+        case "*" :
+            return multiply(a,b);
+        case "/" :
+     return divide(a,b);
+}
+}
+alert('Результат = ' + mathOperation(parseInt(prompt('Введите число 1')),parseInt(prompt('Введите число 2')),prompt('Введите знак операции. Подсказка :   /   *   +   -')));
+//7*
+alert('*Сравнить null и 0. Попробуйте объяснить результат.');
+alert('null > 0; //false, т.к. null не больше нуля \nnull == 0; //false,т.к. null не равен 0\nnull >= 0; //true, т.к. java script смотрит null меньше,чем 0 и видит,что это не так и выводит true не проверяя,а больше ли')
+//8*
+alert('*С помощью рекурсии организовать функцию возведения числа в степень. Формат: function power(val, pow), где val – заданное число, pow – степень.')
+console.log('//////////////////');
+var number = parseInt(prompt('Введите число'));
+var poww = parseInt(prompt('Введите степень'));
+alert('Внимание на консоль!!!');
+function power(a,pow){
+    if(pow<=0){
+        return;
+    }
+    console.log(a); 
+    power(a*number,--pow);
+}
+power(number,poww);
+</script>
 </body>
 </html>
