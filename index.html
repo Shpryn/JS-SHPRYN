@@ -7,110 +7,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .catalog {
+            display: flex;
         }
 
-        .block {
-            height: 64px;
-            width: 64px;
+        .card {
+            background: rgb(196, 196, 196);
+            margin: 10px;
+        }
+
+        .card-price::after {
+            content: '$';
+        }
+
+        .cart-card-price::after {
+            content: '$';
         }
 
         .main {
-            padding-right:64px;
-            padding-bottom:64px;
-            margin: 100px auto;
-            outline: 1px solid grey;
-            width: 640px;
-            height: 640px;
-
+            background: rgb(142, 255, 170);
         }
 
-        .table {
+        .cart {
             display: flex;
-            flex-wrap: wrap;
-            outline: 1px solid grey;
+            flex-wrap:wrap;
         }
 
-        .letters {
-            display: flex;
-            text-align: center;
-            line-height: 64px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .numbers {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            line-height: 64px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-
-
-        .black {
-            background: #000;
-            color:white;
-        }
-
-        .tableNumbers {
-            display: flex;
+        .cart-card {
+            margin: 10px;
         }
     </style>
 </head>
 
 <body>
-    <main id="main" class="main">
-        <div class="letters" id="letters"></div>
-        <div class="tableNumbers">
-            <div id="numbers" class="numbers"></div>
-            <div id="table" class="table"></div>
+    <div class="main" id='main'>
+        <div class="cartTotal" id="cartTotal"></div>
+        <div class="cart" id="cart"></div>
+    </div>
+    <div class="catalog">
+        <div class="card">
+            <h2 class="card-name" id="card-name1">mazus</h2>
+            <h2 class="card-price" id="card-price1">11.99</h2>
+            <button class="card-cart" onclick="addToCart(1)">Purchase</button>
         </div>
-    </main>
+
+        <div class="card">
+            <h2 class="card-name" id="card-name2">fazus</h2>
+            <h2 class="card-price" id="card-price2">16.19</h2>
+            <button class="card-cart" onclick="addToCart(2)">Purchase</button>
+        </div>
+
+        <div class="card">
+            <h2 class="card-name" id="card-name3">zazus</h2>
+            <h2 class="card-price" id="card-price3">12.2</h2>
+            <button class="card-cart" onclick="addToCart(3)">Purchase</button>
+        </div>
+
+        <div class="card">
+            <h2 class="card-name" id="card-name4">sazus</h2>
+            <h2 class="card-price" id="card-price4">14.4</h2>
+            <button class="card-cart" onclick="addToCart(4)">Purchase</button>
+        </div>
+    </div>
     <script>
-        var ABC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-        var OneTwoThree = ['1', '2', '3', '4', '5', '6', '7', '8'];
-        var html = document.getElementById("table");
-        var numbers = document.getElementById("numbers");
-        var letters = document.getElementById("letters");
-        var figures = ["Ладья","Конь","Слон","Ферзь","Король","Слон","Конь","Ладья",
-        "Пешка","Пешка","Пешка","Пешка","Пешка","Пешка","Пешка","Пешка",
-    "","","","","","","","",
-    "","","","","","","","",
-    "","","","","","","","",
-    "","","","","","","","",
-    "Пешка","Пешка","Пешка","Пешка","Пешка","Пешка","Пешка","Пешка",
-    "Ладья","Конь","Слон","Ферзь","Король","Слон","Конь","Ладья"]
-        function chessTable() {
-            let j = 1
-            for (let i = 1; i <= 64; i++) {
-                j++;
-                if (j % 2 == 0) {
-                    html.innerHTML += "<div class='black block'>"+figures[i-1]+"</div>"
-                } else {
-                    html.innerHTML += "<div class='white block'>"+figures[i-1]+"</div>"
-                }
-                if (i % 8 == 0) {
-                    j++
-                }
-            }
-            for (i = 0; i <= 8; i++) {
-                if (!i == 0) {
-                    letters.innerHTML += "<div class='block'>" + ABC[i - 1] + "</div>";
-                } else {
-                    letters.innerHTML += "<div class='block'></div>";
-                }
-            }
-            for (i = 1; i <= 8; i++) {
-                numbers.innerHTML += "<div class='block'>" + OneTwoThree[i - 1] + "</div>";
-            }
+        var arrObj = [],
+            carthtml = document.getElementById('cart'),
+            carttotal = document.getElementById('cartTotal'),
+            total = 0, l = 0;
+
+        function addToCart(a) {
+            arrObj.push({
+                name: document.getElementById('card-name' + a).textContent,
+                price: document.getElementById('card-price' + a).textContent
+            })
+            l = arrObj.length;
+            total += parseFloat(arrObj[l - 1].price);
+            showToCart(l - 1)
         }
-        chessTable();
+
+        function showToCart(l) {
+            carttotal.innerText = 'Cart total price ' + total.toFixed(2) + '$';
+            carthtml.innerHTML += '<div class="cart-card"><h2 class="cart-card-name" id="cart-card-name3">' + arrObj[l].name + '</h2><h2 class="cart-card-price" id="cart-card-price3">' + arrObj[l].price + '</h2></div>';
+        }
     </script>
 </body>
 
